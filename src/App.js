@@ -37,8 +37,20 @@ const App = () => {
       setCurrentNumber('0')
       setOperation('-')
     } else {
-      const sum = Number(firstNumber) - Number(currentNumber)
-      setCurrentNumber(String(sum))
+      const subtract = Number(firstNumber) - Number(currentNumber)
+      setCurrentNumber(String(subtract))
+      setOperation('')
+    }
+  }
+
+  const handleMultiplyNumbers = () => {
+    if(firstNumber === '0') {
+      setFirstNumber(String(currentNumber));
+      setCurrentNumber('0')
+      setOperation('*')
+    } else {
+      const multiply = Number(firstNumber) * Number(currentNumber)
+      setCurrentNumber(String(multiply))
       setOperation('')
     }
   }
@@ -52,6 +64,9 @@ const App = () => {
         case '-':
           handleMinusNumbers();
           break;
+        case '*':
+          handleMultiplyNumbers();
+          break;  
         default:
           break;
       }
@@ -66,7 +81,7 @@ const App = () => {
           <Button label="x" />
           <Button label="/" />
           <Button label="C" onClick={handleOnClear} />
-          <Button label="X" />
+          <Button label="*" onClick={handleMultiplyNumbers} />
         </Row>
         <Row>
           <Button label="7" onClick={() => handleAddNumber('7')} />
